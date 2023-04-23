@@ -63,7 +63,7 @@ export const fetchCountries = (name) => {
     })
     .then((country) => {
       if (country.length > 10) {
-        tooManyResults(country);
+        tooManyResults();
       } else if (country.length >= 2 && country.length <= 10) {
         fewResults(country);
       } else if ((country.length = 1)) {
