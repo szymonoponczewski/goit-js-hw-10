@@ -53,7 +53,7 @@ const oneResult = (country) => {
 };
 
 export const fetchCountries = (name) => {
-  name = name.trim();
+  name = name.trim(); //remove white spaces
   fetch(API_URL + name + API_FILTER)
     .then((res) => {
       if (!res.ok) {
