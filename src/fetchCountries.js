@@ -16,35 +16,35 @@ const tooManyResults = () => {
   );
 };
 
-const fewResults = (country) => {
+const fewResults = (countries) => {
   clearFn();
 
-  const fewCountries = country
-    .map((countryName) => {
-      return `<li><img src="${countryName.flags.png}" alt="${countryName.flags.alt}" width="25" height="auto"><p> ${countryName.name.common}</p></li>`;
+  const fewCountries = countries
+    .map((country) => {
+      return `<li><img src="${country.flags.png}" alt="${country.flags.alt}" width="25" height="auto"><p> ${country.name.common}</p></li>`;
     })
     .join(" ");
 
   countryEl.innerHTML = fewCountries;
 };
 
-const oneResult = (country) => {
+const oneResult = (countries) => {
   clearFn();
 
-  const singleCountry = country
-    .map((countryName) => {
+  const singleCountry = countries
+    .map((country) => {
       return `
-       <h2 style="font-size: 35px"><img src="${countryName.flags.png}" alt="${
-        countryName.flags.alt
-      } width="25" height="25"> ${countryName.name.common}</h2>
+       <h2 style="font-size: 35px"><img src="${country.flags.png}" alt="${
+        country.flags.alt
+      } width="25" height="25"> ${country.name.common}</h2>
         <p><span style="font-weight: bold">Capital:</span> ${
-          countryName.capital
+          country.capital
         }</p>
         <p><span style="font-weight: bold">Population:</span> ${
-          countryName.population
+          country.population
         }</p>
         <p><span style="font-weight: bold">Languages:</span> ${Object.values(
-          countryName.languages
+          country.languages
         ).join(", ")}</p>`;
     })
     .join(" ");
@@ -61,13 +61,13 @@ export const fetchCountries = (name) => {
       }
       return res.json();
     })
-    .then((country) => {
-      if (country.length > 10) {
+    .then((countries) => {
+      if (countries.length > 10) {
         tooManyResults();
-      } else if (country.length >= 2 && country.length <= 10) {
-        fewResults(country);
-      } else if ((country.length = 1)) {
-        oneResult(country);
+      } else if (countries.length >= 2 && countries.length <= 10) {
+        fewResults(countries);
+      } else if ((countries.length = 1)) {
+        oneResult(countries);
       }
     })
     .catch(() => {
