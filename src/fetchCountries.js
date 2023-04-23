@@ -19,19 +19,19 @@ const tooManyResults = () => {
 const fewResults = (country) => {
   clearFn();
 
-  const countries = country
+  const fewCountries = country
     .map((countryName) => {
       return `<li><img src="${countryName.flags.png}" alt="${countryName.flags.alt}" width="25" height="auto"><p> ${countryName.name.common}</p></li>`;
     })
     .join(" ");
 
-  countryEl.innerHTML = countries;
+  countryEl.innerHTML = fewCountries;
 };
 
 const oneResult = (country) => {
   clearFn();
 
-  const countries = country
+  const singleCountry = country
     .map((countryName) => {
       return `
        <h2 style="font-size: 35px"><img src="${countryName.flags.png}" alt="${
@@ -49,7 +49,7 @@ const oneResult = (country) => {
     })
     .join(" ");
 
-  countryInfoEl.innerHTML = countries;
+  countryInfoEl.innerHTML = singleCountry;
 };
 
 export const fetchCountries = (name) => {
